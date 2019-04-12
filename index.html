@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<center>
+			<h1>NoC emu</h1>
+			<h2>Network on Chip online emulator</h2>
+
+			<br>NoC topology:<br>
+			<select onchange="optchange()" id="sel">
+				<option value="mesh">Mesh</option>
+				<option value="ring">Ring</option>
+			</select>
+			
+			<form>
+				<div class="row">
+					<div class="col">
+						X size:<br>
+						<input type="text" name="xsize" id="xsz" value="3">
+					</div>
+					<div class="col">
+						Y size:<br>
+						<input type="text" name="ysize" id="ysz" value="3">
+					</div>
+				</div>
+			</form>
+
+			<br>
+			<button onclick="simulate()" type="button">Simulate</button>
+		</center>
+
+		<script>
+			function simulate() {
+  				var xsize = document.getElementById("xsz").value;
+
+				if(document.getElementById("sel").value == "mesh")
+					var ysize = document.getElementById("ysz").value;
+				
+			}
+
+			function optchange() {
+				if(document.getElementById("sel").value == "ring")
+					document.getElementById("ysz").disabled = true;
+				else
+					document.getElementById("ysz").disabled = false;
+			}
+
+		</script>
+</body>
+</html>
