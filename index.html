@@ -1,47 +1,24 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	</head>
 
-	<body>
-		<center>
-			<h1>NoC emu</h1>
-			<h2>Network on Chip online emulator</h2>
-
-			<br>NoC topology:<br>
-			<select onchange="optchange()" id="sel">
-				<option value="mesh">Mesh</option>
-				<option value="ring">Ring</option>
-			</select>
+	<script>
 			
-			<form>
-				<div class="row">
-					<div class="col">
-						X size:<br>
-						<input type="text" name="xsize" id="xsz" value="3">
-					</div>
-					<div class="col">
-						Y size:<br>
-						<input type="text" name="ysize" id="ysz" value="3">
-					</div>
-				</div>
-			</form>
-
-			<br>
-			<button onclick="simulate()" type="button">Simulate</button>
-		</center>
-
-		<script>
 			function simulate() {
   				var xsize = document.getElementById("xsz").value;
 
 				if(document.getElementById("sel").value == "mesh")
 					var ysize = document.getElementById("ysz").value;
+
+				$("#yello").removeClass("disabled");
+				$("#liyello").removeClass("disabled");
+				document.getElementById('yello').scrollIntoView();
+
+				document.getElementById('avatar').src = "images/cumpadi.jpg";
 				
 			}
 
@@ -52,6 +29,112 @@
 					document.getElementById("ysz").disabled = false;
 			}
 
-		</script>
-</body>
+	</script>
+
+	<head>
+		<title>NOC-EMU-CLIENT</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img id="avatar" src="images/avatar.jpg" alt="" /></span>
+					<h1 id="logo"><a href="#">Ultimate Noc</a></h1>
+					<p>aaaaaa</p>
+					
+				</header>
+				<nav id="nav">
+					<ul>
+						
+						<li id = lisimu ><a href="#simulation">Simulation</a></li>
+						<li class = "disabled" id = liyello ><a href="#yello">AAAAA</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						
+						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						
+
+						<!-- Four -->
+							<section id="simulation">
+								<div class="container">
+									<h3>Simulation</h3>
+
+									<p>Insert data for start the simulation</p>
+
+									<form method="post" action="#">
+										<div class="row gtr-uniform">
+											<div class="col-12">
+												<select onchange="optchange()" id="sel">
+													<option value="mesh">Mesh</option>
+													<option value="ring">Ring</option>
+												</select>
+											</div>
+											<div class="col-6 col-12-xsmall">
+												X size:<br>
+												<input type="text" name="xsize" id="xsz" value="3" placeholder="X Size">
+												
+											</div>
+											<div class="col-6 col-12-xsmall">
+												Y size:<br>
+												<input type="text" name="ysize" id="ysz" value="3" placeholder="Y Size">
+											</div>
+											<div class="col-12">
+												<ul class="actions">
+
+													<li><input type="button" class="primary" onclick="simulate()" value="Simulate"></li>
+													
+												</ul>
+											</div>
+										</div>
+									</form>
+								</div>
+							</section>
+
+					</div>
+					<section id="yello" class="disabled">
+						<div class="container">
+							<h3>ORDINÁÁÁRIA</h3>
+							<p>Eiiitaaa Mainhaaa!! Esse Lorem ipsum é só na sacanageeem!! E que abundância meu irmão viuu!! Assim você vai matar o papai. Só digo uma coisa, Domingo ela não vai! Danadaa!! Vem minha odalisca, agora faz essa cobra coral subir!!! Pau que nasce torto, Nunca se endireita. Tchannn!! Tchannn!! Tu du du pááá! Eu gostchu muitchu, heinn! danadinha! Mainhaa! Agora use meu lorem ipsum ordinária!!! Olha o quibeee! rema, rema, ordinária!.</p>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Demo Images: <a href="http://unsplash.com">Unsplash</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
