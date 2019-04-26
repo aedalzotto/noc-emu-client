@@ -5,31 +5,50 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 
 	<script>
+		var socket = io.connect("http://localhost:8080");
+
+
+		function simulate() {
+			var Xsize = document.getElementById("xsz").value;
+			var Ysize = 1;
+			if(document.getElementById("topology").value == "mesh")
+				Ysize = document.getElementById("ysz").value;
+
+			if(Ysize<1 || Xsize<1 || Xsize>4 || Ysize>4){
+				alert("Tamanho Inválido");
+				return;
+			}		
+
+			var Topology = document.getElementById("topology").options
+								[document.getElementById("topology").selectedIndex].text;
 			
-			function simulate() {
-  				var xsize = document.getElementById("xsz").value;
+			socket.emit("simulate",{
+				topology : Topology,
+				xsize : Xsize,
+				ysize : Ysize,
+			});
 
-				if(document.getElementById("sel").value == "mesh")
-					var ysize = document.getElementById("ysz").value;
+								
+			//change perspective to results
+			$("#yello").removeClass("disabled");
+			$("#liyello").removeClass("disabled");
+			document.getElementById('yello').scrollIntoView({behavior:"smooth"});
 
-				$("#yello").removeClass("disabled");
-				$("#liyello").removeClass("disabled");
-				document.getElementById('yello').scrollIntoView({behavior:"smooth"});
+			document.getElementById('avatar').src = "images/results.jpg";
+			
+		}
 
-				document.getElementById('avatar').src = "images/results.jpg";
-				
-			}
-
-			function optchange() {
-				if(document.getElementById("sel").value == "ring")
-					document.getElementById("ysz").disabled = true;
-				else
-					document.getElementById("ysz").disabled = false;
-			}
+		function optchange() {
+			if(document.getElementById("topology").value == "ring")
+				document.getElementById("ysz").disabled = true;
+			else
+				document.getElementById("ysz").disabled = false;
+		}
 
 	</script>
 
@@ -84,7 +103,7 @@
 						<div class="row gtr-uniform">
 							<div class="col-12">
 								Topology:<br>
-								<select onchange="optchange()" id="sel">
+								<select onchange="optchange()" id="topology">
 
 									<option value="mesh">Mesh</option>
 									<option value="ring">Ring</option>
