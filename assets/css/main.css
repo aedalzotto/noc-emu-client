@@ -31,6 +31,15 @@ footer, header, hgroup, menu, nav, section {
     pointer-events: none;
     opacity: 0;
 }
+.rslt_row{
+  display: table;
+  clear: both;
+}
+.rslt_col{
+  float: left;
+  margin: 5px;
+  
+}
 
 body {
   line-height: 1; }
@@ -878,7 +887,7 @@ pre {
 .container {
   margin: 0 auto;
   max-width: calc(100% - 4.5em);
-  width: 45em; }
+  width: 50em; }
   .container.xsmall {
     width: 11.25em; }
   .container.small {
@@ -1084,13 +1093,17 @@ input[type="radio"] + label:before {
 /* Box */
 .box {
   border-radius: 5px;
-  border: solid 2px #e4e4e4;
+  border: solid 2px #4acaa8;
   margin-bottom: 2.25em;
+  width:200px;
+  height:250px;
+
   padding: 1.5em; }
   .box > :last-child,
   .box > :last-child > :last-child,
   .box > :last-child > :last-child > :last-child {
-    margin-bottom: 0; }
+    margin-bottom: 10;
+     }
   .box.alt {
     border: 0;
     border-radius: 0;
@@ -1578,7 +1591,7 @@ input[type="button"],
   position: fixed;
   text-align: center;
   top: 0;
-  width: 23em;
+  width: 20em;
   right: 0; }
   #header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {
     color: #ffffff; }
@@ -1694,7 +1707,7 @@ input[type="button"],
 
   /* Header */
   #header {
-    width: 21em; }
+    width: 20em; }
     #header > header {
       padding: 2em; }
     #header > footer {
