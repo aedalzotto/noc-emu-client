@@ -10,8 +10,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 
 	<script>
-		var socket = io.connect("http://localhost:8080");
 
+		var socket = io("http://localhost:8080");
+
+		socket.on( 'connect', function(data) {
+        	console.log(data) 	
+        });
 
 		function simulate() {
 			var Xsize = document.getElementById("xsz").value;
@@ -27,12 +31,11 @@
 			var Topology = document.getElementById("topology").options
 								[document.getElementById("topology").selectedIndex].text;
 			
-			socket.emit("simulate",{
+			socket.emit('simulate', {
 				topology : Topology,
 				xsize : Xsize,
 				ysize : Ysize,
 			});
-
 								
 			//change perspective to results
 			$("#yello").removeClass("disabled");
@@ -40,8 +43,55 @@
 			document.getElementById('yello').scrollIntoView({behavior:"smooth"});
 
 			document.getElementById('avatar').src = "images/results.jpg";
-			
+
 		}
+
+		socket.on( 'result', function( msg ) {
+
+			var data = msg.nocemu[0].project;
+			console.log(data);
+
+			for(var x=0; x<data.noc.x; x++){
+				var row = document.createElement('div');
+				row.className = 'rslt_row';
+				$('#results').append(row);
+
+				for(var y=0; y<data.noc.y; y++){
+
+					var port_data = data.communication.volume[0].router.ports;
+
+					var noc_data = data.noc.nodes[0].router;
+					
+					var output = '<h1>'+ noc_data.local+' | '+ noc_data.id+'</h1>' + '<ul class="icons">';
+					
+
+					for (var key in port_data) {
+
+						
+  						if (port_data.hasOwnProperty(key)) {
+
+							output += '<li>'+key+'('+port_data[key]+')'
+				
+						}
+						
+						if(noc_data.hasOwnProperty(key) && key!='local'){
+							output += ': '+ noc_data[key];
+						}
+							
+
+					}
+					
+					output+='</ul>';
+
+					var col = document.createElement('div');
+					col.className = 'box rslt_col';
+					col.innerHTML = output;
+					row.appendChild(col);
+					
+					}
+			}
+			
+		});
 
 		function optchange() {
 			if(document.getElementById("topology").value == "ring")
@@ -131,48 +181,10 @@
 
 			</div>
 				<section id="yello" class="disabled">
-					<div class="container container.large">
+					<div id="results" class="container container.large">
 						<h3>RESULTADOS</h3>
 
-						<div class="rslt_row">
 						
-							<div class="box rslt_col" >
-								<h1>22 | 2323</h1>
-
-								<ul class="icons">
-									<li>LEFT(12):</li>
-									<li>RIGHT(32):</li>
-									<li>UP(12)</li>
-									<li>DOWN(32)</li>
-									<li>LOCAL</li>
-									<li>REQUESTS</li>
-								</ul>
-							</div>
-								
-							<div class="box rslt_col" >
-								<ul class="icons">
-									<li>kkkkk</li>
-									<li>Sharapova</li>
-									<li>sahsuahsua</li>
-								</ul>
-							</div>
-
-							<div class="box rslt_col" >
-								<ul class="icons">
-									<li>coco</li>
-									<li>coame</li>
-									<li>pacman</li>
-								</ul>
-							</div>
-
-							<div class="box rslt_col" >
-								<ul class="icons">
-									<li>papapa</li>
-									<li>omroam</li>
-									<li>chanela</li>
-								</ul>
-							</div>
-						</div>
 					</div>
 				</section>
 
