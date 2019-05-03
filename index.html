@@ -58,16 +58,15 @@
 
 				for(var y=0; y<data.noc.y; y++){
 
-					var port_data = data.communication.volume[0].router.ports;
+					var port_data = data.communication.volume[0]['router'+x+''+y].ports;
 
-					var noc_data = data.noc.nodes[0].router;
+					var noc_data = data.noc.nodes[0]['router'+x+''+y];
 					
 					var output = '<h1>'+ noc_data.local+' | '+ noc_data.id+'</h1>' + '<ul class="icons">';
-					
 
+					console.log(noc_data);
 					for (var key in port_data) {
 
-						
   						if (port_data.hasOwnProperty(key)) {
 
 							output += '<li>'+key+'('+port_data[key]+')'
