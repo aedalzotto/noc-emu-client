@@ -38,10 +38,11 @@
 			});
 								
 			//change perspective to results
+			
 			$("#yello").removeClass("disabled");
 			$("#liyello").removeClass("disabled");
 			document.getElementById('yello').scrollIntoView({behavior:"smooth"});
-
+			
 			document.getElementById('avatar').src = "images/results.jpg";
 
 		}
@@ -67,10 +68,9 @@
 					console.log(noc_data);
 					for (var key in port_data) {
 
-  						if (port_data.hasOwnProperty(key)) {
-
+  						if (port_data.hasOwnProperty(key)){
 							output += '<li>'+key+'('+port_data[key]+')'
-				
+  						
 						}
 						
 						if(noc_data.hasOwnProperty(key) && key!='local'){
