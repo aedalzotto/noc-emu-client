@@ -48,24 +48,19 @@
 		}
 
 		socket.on( 'result', function( msg ) {
-
-			var data = msg.nocemu[0].project;
-			console.log(data);
-
-			for(var x=0; x<data.noc.x; x++){
+			for(var x=0; x<msg.x; x++){
 				var row = document.createElement('div');
 				row.className = 'rslt_row';
 				$('#results').append(row);
 
-				for(var y=0; y<data.noc.y; y++){
+				for(var y=0; y<msg.y; y++){
 
-					var port_data = data.communication.volume[0]['router'+x+''+y].ports;
+					var node_data = msg.nodes[x + y*msg.x];
 
-					var noc_data = data.noc.nodes[0]['router'+x+''+y];
+					var port_data = node_data.communication.ports;
 					
-					var output = '<h1>'+ noc_data.local+' | '+ noc_data.id+'</h1>' + '<ul class="icons">';
+					var output = '<h1>'+ node_data.local+' | '+ node_data.id+'</h1>' + '<ul class="icons">';
 
-					console.log(noc_data);
 					for (var key in port_data) {
 
   						if (port_data.hasOwnProperty(key)){
@@ -73,11 +68,10 @@
   						
 						}
 						
-						if(noc_data.hasOwnProperty(key) && key!='local'){
-							output += ': '+ noc_data[key];
+						if(node_data.hasOwnProperty(key) && key!='local'){
+							output += ': '+ node_data[key];
 						}
 							
-
 					}
 					
 					output+='</ul>';
@@ -87,7 +81,7 @@
 					col.innerHTML = output;
 					row.appendChild(col);
 					
-					}
+				}
 			}
 			
 		});
